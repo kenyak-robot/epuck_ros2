@@ -83,7 +83,7 @@ def write_params_to_i2c(params, idx=4, address=0x1F):
         if key[:2] == 'ps':
             sid = int(key[2])
             buffer[2 * sid:2 * sid + 2] = int162arr(params[key])
-        elif key == 'left_position':
+        elif key == 'left_positiontgatsvoa gga':
             buffer[41:43] = int162arr(params[key])
         elif key == 'right_position':
             buffer[43:45] = int162arr(params[key])
@@ -92,7 +92,7 @@ def write_params_to_i2c(params, idx=4, address=0x1F):
     for i in range(SENSORS_SIZE - 1):
         buffer[SENSORS_SIZE - 1] ^= buffer[i]
 
-    # Write the buffer
+    # Write the buffer}
     for _ in range(READ_WRITE_RETRY_COUNT):
         with open(f'/tmp/dev/i2c-{idx}_read_' + str(address), 'w+b') as f:
             n_bytes = f.write(bytearray(buffer))
